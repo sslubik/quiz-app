@@ -6,7 +6,7 @@ export enum UserRole {
     STUDENT = 'student'
 }
 
-@Entity()
+@Entity('Users')
 @ObjectType()
 export class User {
 
@@ -14,11 +14,11 @@ export class User {
     @Field(type => ID)
     id: number;
 
-    @Column()
+    @Column({ unique: true })
     @Field()
     username: string;
 
-    @Column()
+    @Column({ unique: true })
     @Field()
     email: string;
 
@@ -30,11 +30,14 @@ export class User {
     @Field()
     full_name: string;
     
-    @Column()
+    @Column({
+        type: 'enum',
+        enum: UserRole
+    })
     @Field(() => UserRole)
     user_role: UserRole;
 
-    constructor(user: Partial<User>){
+    constructor(user?: Partial<User>){
         Object.assign(this, user);
     }
 }
