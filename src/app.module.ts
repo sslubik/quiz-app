@@ -8,7 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 
 @Module({
   imports: [
-    ConfigModule.forRoot({}),
+    ConfigModule.forRoot({ isGlobal: true }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gpl')
@@ -22,7 +22,6 @@ import { TypeOrmModule } from '@nestjs/typeorm'
       database: process.env.POSTGRES_DB || 'quiz_db',
       synchronize: JSON.parse(process.env.POSTGRES_SYNCHRONIZE) || false,
       autoLoadEntities: true,
-      entities: []
     }),
     UsersModule
   ],
