@@ -1,4 +1,4 @@
-import { ObjectType, Field, Int, ID } from '@nestjs/graphql'
+import { ObjectType, Field, ID } from '@nestjs/graphql'
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 export enum UserRole {
@@ -12,7 +12,7 @@ export class User {
 
     @PrimaryGeneratedColumn()
     @Field(type => ID)
-    user_id: number;
+    id: number;
 
     @Column()
     @Field()
@@ -27,10 +27,14 @@ export class User {
     password: string;
     
     @Column()
+    @Field()
+    full_name: string;
+    
+    @Column()
     @Field(() => UserRole)
     user_role: UserRole;
 
-    @Column()
-    @Field()
-    full_name: string;
+    constructor(user: Partial<User>){
+        Object.assign(this, user);
+    }
 }
