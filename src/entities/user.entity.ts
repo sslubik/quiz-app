@@ -1,5 +1,6 @@
-import { ObjectType, Field, ID, registerEnumType } from '@nestjs/graphql'
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { ObjectType, Field, registerEnumType } from '@nestjs/graphql'
+import { Column, Entity } from 'typeorm';
+import { AbstractEntity } from './abstract.entity';
 
 export enum UserRole {
     TEACHER = 'teacher',
@@ -10,11 +11,7 @@ registerEnumType(UserRole, { name: "UserRole"});
 
 @Entity('Users')
 @ObjectType()
-export class User {
-
-    @PrimaryGeneratedColumn()
-    @Field(type => ID)
-    id: number;
+export class User extends AbstractEntity<User> {
 
     @Column({ unique: true })
     @Field()
@@ -39,7 +36,7 @@ export class User {
     @Field(() => UserRole)
     user_role: UserRole;
 
-    constructor(user?: Partial<User>){
-        Object.assign(this, user);
+    constructor(user?: Partial<User>) {
+        super(user);
     }
 }
