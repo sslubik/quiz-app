@@ -3,6 +3,7 @@ import { ID, Field, ObjectType } from "@nestjs/graphql";
 
 @ObjectType()
 export class AbstractEntity<T> {
+    
     @PrimaryGeneratedColumn()
     @Field(() => ID)
     id: number;
