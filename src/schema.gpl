@@ -3,12 +3,17 @@
 # ------------------------------------------------------
 
 type User {
-  user_id: Int!
+  id: ID!
   username: String!
   email: String!
   password: String!
-  user_role: String!
   full_name: String!
+  user_role: UserRole!
+}
+
+enum UserRole {
+  TEACHER
+  STUDENT
 }
 
 type Query {
