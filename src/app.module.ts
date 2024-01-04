@@ -5,6 +5,7 @@ import { join } from 'path';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ConfigModule } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
+import { QuizzesModule } from './quizzes/quizzes.module';
 
 @Module({
   imports: [
@@ -23,7 +24,8 @@ import { TypeOrmModule } from '@nestjs/typeorm'
       synchronize: JSON.parse(process.env.POSTGRES_SYNCHRONIZE) || false,
       autoLoadEntities: true,
     }),
-    UsersModule
+    UsersModule,
+    QuizzesModule
   ],
   controllers: [],
   providers: [],
