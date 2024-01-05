@@ -1,5 +1,5 @@
 import { InputType, Field } from '@nestjs/graphql';
-import { UserRole } from '../user.entity'
+import { UserRoleEnum } from '../user.entity'
 
 @InputType()
 export class CreateUserDto {
@@ -16,6 +16,6 @@ export class CreateUserDto {
     @Field()
     readonly full_name: string;
     
-    @Field(() => UserRole)
-    readonly user_role: UserRole;
+    @Field(() => UserRoleEnum)
+    readonly user_role: UserRoleEnum;
 }
