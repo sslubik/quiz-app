@@ -45,7 +45,7 @@ export class User extends AbstractEntity<User> {
     @Field(() => Attempt)
     attempts: Attempt[];
 
-    constructor(user?: Partial<User>) {
-        super(user);
-    }
+    // constructor(user?: Partial<User>) {
+    //     super(user);
+    // }
 }
