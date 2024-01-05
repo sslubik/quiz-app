@@ -3,6 +3,7 @@ import { Column, Entity, OneToMany, ManyToOne, CreateDateColumn } from "typeorm"
 import { AbstractEntity } from "./abstract.entity";
 import { User } from "./user.entity";
 import { Attempt } from "./attempt.entity";
+import { Question } from "./question.entity";
 
 @Entity('Quizzes')
 @ObjectType()
@@ -27,8 +28,4 @@ export class Quiz extends AbstractEntity<Quiz> {
     @OneToMany(() => Question, question => question.quiz)
     @Field(() => [Question])
     questions: Question[];
-
-    constructor(quiz: Partial<Quiz>) {
-        super(quiz);
-    }
 }
