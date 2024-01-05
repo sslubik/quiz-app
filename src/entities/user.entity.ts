@@ -4,12 +4,12 @@ import { AbstractEntity } from './abstract.entity';
 import { Quiz } from './quiz.entity';
 import { Attempt } from './attempt.entity';
 
-export enum UserRole {
+export enum UserRoleEnum {
     TEACHER = 'teacher',
     STUDENT = 'student'
 }
 
-registerEnumType(UserRole, { name: "UserRole"});
+registerEnumType(UserRoleEnum, { name: "UserRole"});
 
 @Entity('Users')
 @ObjectType()
@@ -33,10 +33,10 @@ export class User extends AbstractEntity<User> {
     
     @Column({
         type: 'enum',
-        enum: UserRole
+        enum: UserRoleEnum
     })
-    @Field(() => UserRole)
-    user_role: UserRole;
+    @Field(() => UserRoleEnum)
+    user_role: UserRoleEnum;
 
     @OneToMany(() => Quiz, quiz => quiz.user)
     @Field(() => [Quiz])
