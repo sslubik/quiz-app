@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { QuizzesModule } from './quizzes/quizzes.module';
 import { AttemptsModule } from './attempts/attempts.module';
+import { QuestionsModule } from './questions/questions.module';
 
 @Module({
   imports: [
@@ -23,11 +24,12 @@ import { AttemptsModule } from './attempts/attempts.module';
       password: process.env.POSTGRES_PASSWORD || 'postgres',
       database: process.env.POSTGRES_DB || 'quiz_db',
       synchronize: JSON.parse(process.env.POSTGRES_SYNCHRONIZE) || false,
-      autoLoadEntities: true,
+      autoLoadEntities: true
     }),
     UsersModule,
     QuizzesModule,
-    AttemptsModule
+    AttemptsModule,
+    QuestionsModule
   ],
   controllers: [],
   providers: [],
