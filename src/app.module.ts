@@ -6,6 +6,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ConfigModule } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { QuizzesModule } from './quizzes/quizzes.module';
+import { AttemptsModule } from './attempts/attempts.module';
 
 @Module({
   imports: [
@@ -25,7 +26,8 @@ import { QuizzesModule } from './quizzes/quizzes.module';
       autoLoadEntities: true,
     }),
     UsersModule,
-    QuizzesModule
+    QuizzesModule,
+    AttemptsModule
   ],
   controllers: [],
   providers: [],
