@@ -33,7 +33,8 @@ export class User extends AbstractEntity<User> {
     
     @Column({
         type: 'enum',
-        enum: UserRoleEnum
+        enum: UserRoleEnum,
+        enumName: 'user_role_enum'
     })
     @Field(() => UserRoleEnum)
     user_role: UserRoleEnum;

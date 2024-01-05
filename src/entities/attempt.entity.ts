@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, ManyToOne } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne } from "typeorm";
 import { AbstractEntity } from "./abstract.entity";
 import { Field, ObjectType } from "@nestjs/graphql";
 import { User } from "./user.entity";
@@ -8,7 +8,7 @@ import { Quiz } from "./quiz.entity";
 @ObjectType()
 export class Attempt extends AbstractEntity<Attempt> {
 
-    @CreateDateColumn({ type: 'timestamp with time zone', default: 'CURRENT_TIMESTAMP'})
+    @CreateDateColumn({ type: 'timestamp with time zone', default: () => 'CURRENT_TIMESTAMP'})
     @Field(() => Date, { nullable: true })
     opens_at: Date;
 
@@ -24,11 +24,13 @@ export class Attempt extends AbstractEntity<Attempt> {
     @Field({ nullable: true })
     score: number;
 
-    @ManyToOne(() => User, user => user.attempts)
+    @ManyToOne(() => User, user => user.attempts, { nullable: false })
+    @JoinColumn({ name: 'user_id'})
     @Field(() => User)
     user: User;
 
-    @ManyToOne(() => Quiz, quiz => quiz.attempts)
+    @ManyToOne(() => Quiz, quiz => quiz.attempts, { nullable: false })
+    @JoinColumn({ name: 'quiz_id'})
     @Field(() => Quiz)
     quiz: Quiz;
 }

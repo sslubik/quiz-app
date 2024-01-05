@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToMany, ManyToOne, OneToMany } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany } from "typeorm";
 import { AbstractContentEntity } from "./abstract.content.entity";
 import { Field, ObjectType, registerEnumType } from "@nestjs/graphql";
 import { Quiz } from "./quiz.entity";
@@ -17,16 +17,18 @@ export class Question extends AbstractContentEntity {
 
     @Column()
     @Field()
-    max_points: string;
+    max_points: number;
 
     @Column({
         type: 'enum',
-        enum: QuestionTypeEnum
+        enum: QuestionTypeEnum,
+        enumName: 'question_type_enum'
     })
     @Field(() => QuestionTypeEnum)
     question_type = QuestionTypeEnum;
     
-    @ManyToOne(() => Quiz, quiz => quiz.attempts)
+    @ManyToOne(() => Quiz, quiz => quiz.attempts, { nullable: false })
+    @JoinColumn({ name: 'quiz_id'})
     @Field(() => Quiz)
     quiz: Quiz;
 
