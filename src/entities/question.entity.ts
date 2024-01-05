@@ -26,9 +26,9 @@ export class Question extends AbstractContentEntity {
     @Field(() => QuestionTypeEnum)
     question_type = QuestionTypeEnum;
     
-    // @ManyToOne(() => Quiz, quiz => quiz.attempts)
-    // @Field(() => Quiz)
-    // quiz: Quiz;
+    @ManyToOne(() => Quiz, quiz => quiz.attempts)
+    @Field(() => Quiz)
+    quiz: Quiz;
 
     // @OneToMany(() => ChoiceAnswer, choiceAnswer => choiceAnswer.question)
     // @Field(() => ChoiceAnswer)
