@@ -2,6 +2,7 @@ import { ObjectType, Field, registerEnumType } from '@nestjs/graphql'
 import { Column, Entity, OneToMany } from 'typeorm';
 import { AbstractEntity } from './abstract.entity';
 import { Quiz } from './quiz.entity';
+import { Attempt } from './attempt.entity';
 
 export enum UserRole {
     TEACHER = 'teacher',
@@ -44,8 +45,4 @@ export class User extends AbstractEntity<User> {
     @OneToMany(() => Attempt, attempt => attempt.user)
     @Field(() => Attempt)
     attempts: Attempt[];
-
-    // constructor(user?: Partial<User>) {
-    //     super(user);
-    // }
 }
