@@ -69,12 +69,12 @@ type User {
   email: String!
   password: String!
   full_name: String!
-  user_role: UserRole!
+  user_role: UserRoleEnum!
   quizzes: [Quiz!]!
   attempts: Attempt!
 }
 
-enum UserRole {
+enum UserRoleEnum {
   TEACHER
   STUDENT
 }
@@ -94,5 +94,5 @@ input CreateUserDto {
   email: String!
   password: String!
   full_name: String!
-  user_role: UserRole!
+  user_role: UserRoleEnum!
 }
