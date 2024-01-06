@@ -1,17 +1,17 @@
 import { Field, ObjectType } from "@nestjs/graphql";
-import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
+import { Column, Entity, ManyToOne, JoinColumn } from "typeorm";
 import { AbstractContentEntity } from "./abstract.content.entity";
 import { Question } from "./question.entity";
 
-@Entity('Choice_answears')
+@Entity('Sorting_answers')
 @ObjectType()
-export class ChoiceAnswear extends AbstractContentEntity {
+export class SortingAnswer extends AbstractContentEntity {
 
     @Column()
     @Field()
-    is_correct: boolean;
+    order: number;
 
-    @ManyToOne(() => Question, question => question.choice_answears)
+    @ManyToOne(() => Question, question => question.sorting_answers)
     @JoinColumn({ name: 'question_id' })
     @Field(() => Question)
     question: Question;

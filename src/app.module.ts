@@ -8,7 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { QuizzesModule } from './quizzes/quizzes.module';
 import { AttemptsModule } from './attempts/attempts.module';
 import { QuestionsModule } from './questions/questions.module';
-import { AnswearsModule } from './answears/answears.module';
+import { AnswersModule } from './answers/answers.module';
 
 @Module({
   imports: [
@@ -31,7 +31,7 @@ import { AnswearsModule } from './answears/answears.module';
     QuizzesModule,
     AttemptsModule,
     QuestionsModule,
-    AnswearsModule
+    AnswersModule
   ],
   controllers: [],
   providers: [],

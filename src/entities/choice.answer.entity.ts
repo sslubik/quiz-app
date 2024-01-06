@@ -1,13 +1,17 @@
 import { Field, ObjectType } from "@nestjs/graphql";
-import { Entity, ManyToOne, JoinColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
 import { AbstractContentEntity } from "./abstract.content.entity";
 import { Question } from "./question.entity";
 
-@Entity('Text_answears')
+@Entity('Choice_answers')
 @ObjectType()
-export class TextAnswear extends AbstractContentEntity {
+export class ChoiceAnswer extends AbstractContentEntity {
 
-    @ManyToOne(() => Question, question => question.text_answears)
+    @Column()
+    @Field()
+    is_correct: boolean;
+
+    @ManyToOne(() => Question, question => question.choice_answers)
     @JoinColumn({ name: 'question_id' })
     @Field(() => Question)
     question: Question;

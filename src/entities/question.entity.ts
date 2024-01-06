@@ -2,9 +2,9 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm";
 import { AbstractContentEntity } from "./abstract.content.entity";
 import { Field, ObjectType, registerEnumType } from "@nestjs/graphql";
 import { Quiz } from "./quiz.entity";
-import { ChoiceAnswear } from "./choice.answear.entity";
-import { SortingAnswear } from "./sorting.answear.entity";
-import { TextAnswear } from "./text.answear.entity";
+import { ChoiceAnswer } from "./choice.answer.entity";
+import { SortingAnswer } from "./sorting.answer.entity";
+import { TextAnswer } from "./text.answer.entity";
 
 export enum QuestionTypeEnum {
     OPEN_ENDED = "open_ended",
@@ -35,15 +35,15 @@ export class Question extends AbstractContentEntity {
     @Field(() => Quiz)
     quiz: Quiz;
 
-    @OneToMany(() => ChoiceAnswear, choiceAnswear => choiceAnswear.question, { nullable: true })
-    @Field(() => [ChoiceAnswear], { nullable: true })
-    choice_answears: ChoiceAnswear[];
+    @OneToMany(() => ChoiceAnswer, choiceAnswer => choiceAnswer.question, { nullable: true })
+    @Field(() => [ChoiceAnswer], { nullable: true })
+    choice_answers: ChoiceAnswer[];
 
-    @OneToMany(() => SortingAnswear, sortingAnswear => sortingAnswear.question, { nullable: true })
-    @Field(() => [SortingAnswear], { nullable: true })
-    sorting_answears: SortingAnswear[];
+    @OneToMany(() => SortingAnswer, sortingAnswer => sortingAnswer.question, { nullable: true })
+    @Field(() => [SortingAnswer], { nullable: true })
+    sorting_answers: SortingAnswer[];
 
-    @OneToMany(() => TextAnswear, textAnswear => textAnswear.question, { nullable: true })
-    @Field(() => [TextAnswear], { nullable: true })
-    text_answears: TextAnswear[];
+    @OneToMany(() => TextAnswer, textAnswer => textAnswer.question, { nullable: true })
+    @Field(() => [TextAnswer], { nullable: true })
+    text_answers: TextAnswer[];
 }
