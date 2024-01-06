@@ -17,12 +17,35 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type ChoiceAnswear {
+  id: ID!
+  content: String!
+  is_correct: Boolean!
+  question: Question!
+}
+
+type SortingAnswear {
+  id: ID!
+  content: String!
+  order: Float!
+  question: Question!
+}
+
+type TextAnswear {
+  id: ID!
+  content: String!
+  question: Question!
+}
+
 type Question {
   id: ID!
   content: String!
   max_points: Float!
   question_type: QuestionTypeEnum!
   quiz: Quiz!
+  choice_answears: [ChoiceAnswear!]
+  sorting_answears: SortingAnswear
+  text_answears: TextAnswear
 }
 
 enum QuestionTypeEnum {
