@@ -13,19 +13,35 @@ export class UsersService {
     ) {}
     
     async findAll() {
-        return await this.usersRepository.find();
+        try { 
+          return this.usersRepository.find(); 
+        } catch(err) { 
+          console.error(err); 
+        }
     }
 
     async findOne(id: number) {
-        return await this.usersRepository.findOneBy({ id });
+        try {
+          return this.usersRepository.findOneBy({ id }); 
+        } catch(err) {
+          console.error(err);
+        }
     }
 
     async create(createUserDto: CreateUserDto) {
-        const user = new User(createUserDto);
-        await this.usersRepository.save(user);
+        try {
+          const user = new User(createUserDto);
+          return this.usersRepository.save(user);
+        } catch(err) {
+          console.error(err);
+        }
     }
 
     async remove(id: number) {
-        await this.usersRepository.delete(id);
+        try { 
+          this.usersRepository.delete(id); 
+        } catch(err) { 
+          console.error(err);
+        }
     }
 }
