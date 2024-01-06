@@ -20,7 +20,10 @@ export class Attempt extends AbstractEntity<Attempt> {
     @Field(() => Date, { nullable: true })
     finished_at: Date;
 
-    @Column({ nullable: true })
+    @Column({ 
+        nullable: true, 
+        type: 'double precision' 
+    })
     @Field({ nullable: true })
     score: number;
 
