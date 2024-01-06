@@ -10,6 +10,7 @@ import { AttemptsModule } from './attempts/attempts.module';
 import { QuestionsModule } from './questions/questions.module';
 import { ChoiceAnswersModule } from './choice-answers/choice-answers.module';
 import { SortingAnswersModule } from './sorting-answers/sorting-answers.module';
+import { TextAnswersModule } from './text-answers/text-answers.module';
 
 @Module({
   imports: [
@@ -33,7 +34,8 @@ import { SortingAnswersModule } from './sorting-answers/sorting-answers.module';
     AttemptsModule,
     QuestionsModule,
     ChoiceAnswersModule,
-    SortingAnswersModule
+    SortingAnswersModule,
+    TextAnswersModule
   ],
   controllers: [],
   providers: [],
