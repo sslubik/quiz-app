@@ -44,8 +44,8 @@ type Question {
   question_type: QuestionTypeEnum!
   quiz: Quiz!
   choice_answears: [ChoiceAnswear!]
-  sorting_answears: SortingAnswear
-  text_answears: TextAnswear
+  sorting_answears: [SortingAnswear!]
+  text_answears: [TextAnswear!]
 }
 
 enum QuestionTypeEnum {
