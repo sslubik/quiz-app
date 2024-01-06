@@ -18,7 +18,7 @@ registerEnumType(QuestionTypeEnum, { name: 'QuestionTypeEnum' });
 @ObjectType()
 export class Question extends AbstractContentEntity {
 
-    @Column()
+    @Column({ type: 'double precision' })
     @Field()
     max_points: number;
 
