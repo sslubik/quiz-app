@@ -8,8 +8,6 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { QuizzesModule } from './quizzes/quizzes.module';
 import { AttemptsModule } from './attempts/attempts.module';
 import { QuestionsModule } from './questions/questions.module';
-import { AnswersModule } from './answers/answers.module';
-import { ServiceModule } from './resolver/service/service.module';
 import { ChoiceAnswersModule } from './choice-answers/choice-answers.module';
 
 @Module({
@@ -33,8 +31,6 @@ import { ChoiceAnswersModule } from './choice-answers/choice-answers.module';
     QuizzesModule,
     AttemptsModule,
     QuestionsModule,
-    AnswersModule,
-    ServiceModule,
     ChoiceAnswersModule
   ],
   controllers: [],
