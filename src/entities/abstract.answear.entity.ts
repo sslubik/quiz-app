@@ -6,7 +6,7 @@ import { Question } from "./question.entity";
 @ObjectType()
 export class AbstractAnswearEntity extends AbstractContentEntity {
 
-    @ManyToOne(() => Question, question => question.answers, { nullable: false })
+    @ManyToOne(() => Question, { nullable: false })
     @JoinColumn({ name: 'question_id' })
     @Field(() => Question)
     question: Question;
