@@ -80,5 +80,19 @@ enum UserRole {
 }
 
 type Query {
-  users: [User!]!
+  findAllUsers: [User!]!
+  findOneUser(id: Int!): User!
+}
+
+type Mutation {
+  createUser(createUserDto: CreateUserDto!): User!
+  removeUser(id: Int!): User
+}
+
+input CreateUserDto {
+  username: String!
+  email: String!
+  password: String!
+  full_name: String!
+  user_role: UserRole!
 }
