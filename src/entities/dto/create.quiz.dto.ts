@@ -1,12 +1,15 @@
-import { Field, InputType } from "@nestjs/graphql";
-import { User } from "../user.entity";
+import { Field, ID, InputType } from "@nestjs/graphql";
+import { CreateQuestionDto } from "./create.question.dto";
 
 @InputType()
 export class CreateQuizDto {
 
+    @Field(() => ID)
+    readonly user_id: number;
+
     @Field()
     readonly name: string;
 
-    @Field()
-    readonly user: User;
+    @Field(() => [CreateQuestionDto])
+    readonly questions: CreateQuestionDto[];
 }
