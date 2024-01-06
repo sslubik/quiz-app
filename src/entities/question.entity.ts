@@ -40,10 +40,10 @@ export class Question extends AbstractContentEntity {
     choice_answears: ChoiceAnswear[];
 
     @OneToMany(() => SortingAnswear, sortingAnswear => sortingAnswear.question, { nullable: true })
-    @Field(() => SortingAnswear, { nullable: true })
+    @Field(() => [SortingAnswear], { nullable: true })
     sorting_answears: SortingAnswear[];
 
     @OneToMany(() => TextAnswear, textAnswear => textAnswear.question, { nullable: true })
-    @Field(() => TextAnswear, { nullable: true })
+    @Field(() => [TextAnswear], { nullable: true })
     text_answears: TextAnswear[];
 }
