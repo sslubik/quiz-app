@@ -1,7 +1,10 @@
-import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm";
 import { AbstractContentEntity } from "./abstract.content.entity";
 import { Field, ObjectType, registerEnumType } from "@nestjs/graphql";
 import { Quiz } from "./quiz.entity";
+import { ChoiceAnswear } from "./choice.answear.entity";
+import { SortingAnswear } from "./sorting.answear.entity";
+import { TextAnswear } from "./text.answear.entity";
 
 export enum QuestionTypeEnum {
     OPEN_ENDED = "open_ended",
@@ -32,6 +35,15 @@ export class Question extends AbstractContentEntity {
     @Field(() => Quiz)
     quiz: Quiz;
 
-    // @OneToMany(() => ChoiceAnswer, choiceAnswer => choiceAnswer.question)
-    // @Field(() => ChoiceAnswer)
+    @OneToMany(() => ChoiceAnswear, choiceAnswear => choiceAnswear.question, { nullable: true })
+    @Field(() => [ChoiceAnswear], { nullable: true })
+    choice_answears: ChoiceAnswear[];
+
+    @OneToMany(() => SortingAnswear, sortingAnswear => sortingAnswear.question, { nullable: true })
+    @Field(() => SortingAnswear, { nullable: true })
+    sorting_answears: SortingAnswear[];
+
+    @OneToMany(() => TextAnswear, textAnswear => textAnswear.question, { nullable: true })
+    @Field(() => TextAnswear, { nullable: true })
+    text_answears: TextAnswear[];
 }
