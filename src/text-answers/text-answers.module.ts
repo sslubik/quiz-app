@@ -6,6 +6,7 @@ import { TextAnswer } from 'src/entities/text.answer.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([TextAnswer])],
-  providers: [TextAnswersResolver, TextAnswersService]
+  providers: [TextAnswersResolver, TextAnswersService],
+  exports: [TextAnswersService]
 })
 export class TextAnswersModule {}
