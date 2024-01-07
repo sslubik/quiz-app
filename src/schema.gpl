@@ -17,21 +17,21 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
-type ChoiceAnswear {
+type ChoiceAnswer {
   id: ID!
   content: String!
   is_correct: Boolean!
   question: Question!
 }
 
-type SortingAnswear {
+type SortingAnswer {
   id: ID!
   content: String!
   order: Float!
   question: Question!
 }
 
-type TextAnswear {
+type TextAnswer {
   id: ID!
   content: String!
   question: Question!
@@ -43,9 +43,9 @@ type Question {
   max_points: Float!
   question_type: QuestionTypeEnum!
   quiz: Quiz!
-  choice_answears: [ChoiceAnswear!]
-  sorting_answears: [SortingAnswear!]
-  text_answears: [TextAnswear!]
+  choice_answers: [ChoiceAnswer!]
+  sorting_answers: [SortingAnswer!]
+  text_answers: [TextAnswer!]
 }
 
 enum QuestionTypeEnum {
@@ -82,11 +82,18 @@ enum UserRoleEnum {
 type Query {
   findAllUsers: [User!]!
   findOneUser(id: Int!): User!
+  findAllChoiceAnswers: [ChoiceAnswer!]!
+  findOneChoiceAnswer: ChoiceAnswer!
+  findAllSortingAnswers: [SortingAnswer!]!
+  findOneSortingAnswer: SortingAnswer!
+  findAllTextAnswers: [TextAnswer!]!
+  findOneTextAnswer: TextAnswer!
 }
 
 type Mutation {
   createUser(createUserDto: CreateUserDto!): User!
   removeUser(id: Int!): User
+  createQuiz: Quiz!
 }
 
 input CreateUserDto {
