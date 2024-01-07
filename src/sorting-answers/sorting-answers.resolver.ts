@@ -8,12 +8,12 @@ export class SortingAnswersResolver {
     constructor(private readonly sortingAnswersService: SortingAnswersService) {}
 
     @Query(returns => [SortingAnswer])
-    async findAll(): Promise<SortingAnswer[]> {
+    async findAllSortingAnswers(): Promise<SortingAnswer[]> {
         return await this.sortingAnswersService.findAll();
     }
 
     @Query(returns => SortingAnswer)
-    async findOne(id: number) {
+    async findOneSortingAnswer(id: number) {
         return await this.sortingAnswersService.findOne(id);
     }
 }

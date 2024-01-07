@@ -8,12 +8,12 @@ export class ChoiceAnswersResolver {
     constructor(private readonly choiceAnswersService: ChoiceAnswersService) {}
 
     @Query(returns => [ChoiceAnswer])
-    async findAll(): Promise<ChoiceAnswer[]> {
+    async findAllChoiceAnswers(): Promise<ChoiceAnswer[]> {
         return await this.choiceAnswersService.findAll();
     }
 
     @Query(returns => ChoiceAnswer)
-    async findOne(id: number): Promise<ChoiceAnswer> {
+    async findOneChoiceAnswer(id: number): Promise<ChoiceAnswer> {
         return await this.choiceAnswersService.findOne(id);
     }
 }
