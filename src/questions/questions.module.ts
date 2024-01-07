@@ -5,6 +5,7 @@ import { QuestionsService } from './questions.service';
 
 @Module({
     imports: [TypeOrmModule.forFeature([Question])],
-    providers: [QuestionsService]
+    providers: [QuestionsService],
+    exports: [QuestionsService]
 })
 export class QuestionsModule {}
