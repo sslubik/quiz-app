@@ -6,6 +6,7 @@ import { ChoiceAnswer } from 'src/entities/choice.answer.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ChoiceAnswer])],
-  providers: [ChoiceAnswersService, ChoiceAnswersResolver]
+  providers: [ChoiceAnswersService, ChoiceAnswersResolver],
+  exports: [ChoiceAnswersService]
 })
 export class ChoiceAnswersModule {}
