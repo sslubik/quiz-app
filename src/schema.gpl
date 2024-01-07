@@ -58,6 +58,7 @@ type Quiz {
   id: ID!
   name: String!
   created_at: DateTime
+  user_id: Int!
   user: User!
   attempts: [Attempt!]
   questions: [Question!]!
