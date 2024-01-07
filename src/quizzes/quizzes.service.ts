@@ -28,7 +28,16 @@ export class QuizzesService {
         }
     }
 
-    async create(quiz: CreateQuizDto) {
-        
+    async findByUserId(user_id: number): Promise<Quiz[]> {
+      try {
+        return this.quizzesRepository.findBy({ user_id: user_id });
+      } catch(err) {
+        console.error(err);
+      }
+    }
+
+    async createQuiz(createQuiz: CreateQuizDto) {
+        const { questions, ...newQuiz } = createQuiz;
+        const quiz = new Quiz(newQuiz);
     }
 }
