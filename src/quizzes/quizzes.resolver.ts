@@ -9,7 +9,7 @@ export class QuizzesResolver {
     constructor(private readonly quizzesService: QuizzesService) {}
 
     @Mutation(returns => Quiz)
-    async createQuiz(createQuizDto: CreateQuizDto) {
-
+    async createQuiz(createQuizDto: CreateQuizDto): Promise<Quiz> {
+        return await this.quizzesService.createQuiz(createQuizDto);
     }
 }
