@@ -6,6 +6,7 @@ import { SortingAnswer } from 'src/entities/sorting.answer.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([SortingAnswer])],
-  providers: [SortingAnswersResolver, SortingAnswersService]
+  providers: [SortingAnswersResolver, SortingAnswersService],
+  exports: [SortingAnswersService]
 })
 export class SortingAnswersModule {}
