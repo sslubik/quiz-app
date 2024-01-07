@@ -6,6 +6,7 @@ import { QuizzesService } from './quizzes.service';
 
 @Module({
     imports: [TypeOrmModule.forFeature([Quiz])],
-    providers: [QuizzesResolver, QuizzesService]
+    providers: [QuizzesResolver, QuizzesService],
+    exports: [QuizzesService]
 })
 export class QuizzesModule {}
