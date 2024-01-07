@@ -1,4 +1,4 @@
-import { Field, ObjectType } from "@nestjs/graphql";
+import { Field, Int, ObjectType } from "@nestjs/graphql";
 import { Column, Entity, OneToMany, ManyToOne, CreateDateColumn, JoinColumn } from "typeorm";
 import { AbstractEntity } from "./abstract.entity";
 import { User } from "./user.entity";
@@ -16,6 +16,10 @@ export class Quiz extends AbstractEntity<Quiz> {
     @CreateDateColumn({ type: 'timestamp with time zone', default: () => 'CURRENT_TIMESTAMP'})
     @Field(() => Date, { nullable: true })
     created_at: Date;
+
+    @Column()
+    @Field(() => Int)
+    user_id: number;
 
     @ManyToOne(() => User, user => user.quizzes)
     @JoinColumn({ name: 'user_id' })
