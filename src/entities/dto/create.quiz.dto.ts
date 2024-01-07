@@ -11,5 +11,5 @@ export class CreateQuizDto {
     readonly name: string;
 
     @Field(() => [CreateQuestionDto])
-    readonly questions: CreateQuestionDto[];
+    readonly questionsDto: CreateQuestionDto[];
 }
