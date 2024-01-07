@@ -1,4 +1,4 @@
-import { Field, Float, ID, InputType } from "@nestjs/graphql";
+import { Field, Float, InputType } from "@nestjs/graphql";
 import { QuestionTypeEnum } from "../question.entity";
 import { CreateChoiceAnswerDto } from "./create.choice.answer.dto";
 import { CreateSortingAnswerDto } from "./create.sorting.answer.dto";
@@ -10,18 +10,18 @@ export class CreateQuestionDto {
     @Field()
     content: string;
 
-    @Field()
+    @Field(() => QuestionTypeEnum)
     question_type: QuestionTypeEnum;
 
     @Field(() => Float)
     max_point: number;
 
     @Field(() => [CreateChoiceAnswerDto], { nullable: 'itemsAndList' })
-    choiceAnswers: CreateChoiceAnswerDto[];
+    choiceAnswersDto: CreateChoiceAnswerDto[];
 
     @Field(() => [CreateSortingAnswerDto], { nullable: 'itemsAndList' })
-    sortingAnswers: CreateSortingAnswerDto[];
+    sortingAnswersDto: CreateSortingAnswerDto[];
 
     @Field(() => [CreateTextAnswerDto], { nullable: 'itemsAndList' })
-    textAnswers: CreateTextAnswerDto[];
+    textAnswersDto: CreateTextAnswerDto[];
 }
