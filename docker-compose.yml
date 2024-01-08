@@ -5,5 +5,5 @@ services:
       - .env
     ports:
       - "${POSTGRES_PORT}:5432"
-    volumes:
-      - ~/app/postgres:/var/lib/postgresql/data
+    # volumes:
+    #   - ~/app/postgres:/var/lib/postgresql/data
