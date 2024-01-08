@@ -11,6 +11,7 @@ import { QuestionsModule } from './questions/questions.module';
 import { ChoiceAnswersModule } from './choice-answers/choice-answers.module';
 import { SortingAnswersModule } from './sorting-answers/sorting-answers.module';
 import { TextAnswersModule } from './text-answers/text-answers.module';
+import { AttemptsQuestionsModule } from './attempts-questions/attempts-questions.module';
 
 @Module({
   imports: [
@@ -35,9 +36,8 @@ import { TextAnswersModule } from './text-answers/text-answers.module';
     QuestionsModule,
     ChoiceAnswersModule,
     SortingAnswersModule,
-    TextAnswersModule
-  ],
-  controllers: [],
-  providers: [],
+    TextAnswersModule,
+    AttemptsQuestionsModule
+  ]
 })
 export class AppModule {}
