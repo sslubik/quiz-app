@@ -7,12 +7,12 @@ import { SortingAnswer } from "./sorting.answer.entity";
 import { TextAnswer } from "./text.answer.entity";
 
 export enum QuestionTypeEnum {
-    CHOICE = 'CHOICE',
-    TEXT = 'TEXT',
-    SORTING = 'SORTING'
+    CHOICE = 'choice',
+    TEXT = 'text',
+    SORTING = 'sorting'
 }
 
-registerEnumType(QuestionTypeEnum, { name: 'QuestionTypeEnum' });
+registerEnumType(QuestionTypeEnum, { name: 'QuestionTypeEnum'});
 
 @Entity('Questions')
 @ObjectType()
@@ -28,7 +28,7 @@ export class Question extends AbstractContentEntity {
         enumName: 'question_type_enum'
     })
     @Field(() => QuestionTypeEnum)
-    question_type = QuestionTypeEnum;
+    question_type: QuestionTypeEnum;
     
     @ManyToOne(() => Quiz, quiz => quiz.attempts, { nullable: false })
     @JoinColumn({ name: 'quiz_id'})
