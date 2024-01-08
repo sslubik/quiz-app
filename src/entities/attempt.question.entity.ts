@@ -16,12 +16,12 @@ export class AttemptQuestion extends AbstractEntity<AttemptQuestion> {
     @Field()
     answer: string;
 
-    @ManyToOne(() => Attempt, attempt => attempt.attempt_questions)
+    @ManyToOne(() => Attempt, attempt => attempt.attempts_questions)
     @JoinColumn({ name: 'attempt_id' })
     @Field(() => Attempt)
     attempt: Attempt;
 
-    @ManyToOne(() => Question, question => question.attempt_questions)
+    @ManyToOne(() => Question, question => question.attempts_questions)
     @JoinColumn({ name: "question_id" })
     @Field(() => Question)
     question: Question;
