@@ -60,7 +60,9 @@ export class QuizzesService {
                   textAnswersDto, 
                   ...newQuestion } = questionDto;
 
-          if (!choiceAnswersDto && !sortingAnswersDto && !textAnswersDto) {
+          if ((typeof choiceAnswersDto === 'undefined' || !choiceAnswersDto.length)
+              && (typeof sortingAnswersDto === 'undefined' || !sortingAnswersDto.length)
+              && (typeof textAnswersDto === 'undefined' || !textAnswersDto.length)) {
             throw new Error(`All questions must have at least one answer!
             Faulty question content: ${newQuestion.content}`);
           }
@@ -87,7 +89,7 @@ export class QuizzesService {
                 await queryRunner.manager.save(ChoiceAnswer, choiceAnswer);
               }
 
-              if (!isCorrectArr.some(isCorrect => isCorrect === true)) {
+              if (!isCorrectArr.some(isCorrect => isCorrect)) {
                 throw new Error(`Answers in choice type questions must have at least one true answer!
                 Faulty question content: ${savedQuestion.content}`);
               }
@@ -126,10 +128,11 @@ export class QuizzesService {
   
                 await queryRunner.manager.save(TextAnswer, textAnswer);
               }
+
               break;
   
             default:
-              throw new Error('Unknown question_type in Question entity: Unable to asave the answers to the datbase!');
+              throw new Error('Unknown question_type in Question entity: Unable to save the answers to the datbase!');
           }
         }
   
