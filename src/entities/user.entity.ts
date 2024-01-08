@@ -9,7 +9,7 @@ export enum UserRoleEnum {
     STUDENT = 'student'
 }
 
-registerEnumType(UserRoleEnum, { name: "UserRoleEnum"});
+registerEnumType(UserRoleEnum, { name: 'UserRoleEnum'});
 
 @Entity('Users')
 @ObjectType()
