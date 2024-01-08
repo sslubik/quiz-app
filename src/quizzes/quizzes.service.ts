@@ -76,6 +76,7 @@ export class QuizzesService {
 
                   this.choiceAnswersRepository.save(choiceAnswer);
                 }
+                break;
               case QuestionTypeEnum.SORTING:
                 for (const sortingAnswerDto of sortingAnswersDto) {
                   const sortingAnswer = new SortingAnswer(sortingAnswerDto);
@@ -83,6 +84,7 @@ export class QuizzesService {
 
                   this.sortingAnswersRepository.save(sortingAnswer);
                 }
+                break;
               case QuestionTypeEnum.OPEN_ENDED:
                 for (const textAnswerDto of textAnswersDto) {
                   const textAnswer = new TextAnswer(textAnswerDto);
@@ -90,6 +92,7 @@ export class QuizzesService {
 
                   this.textAnswersRepository.save(textAnswer);
                 }
+                break;
             }
           }
           return savedQuiz;
