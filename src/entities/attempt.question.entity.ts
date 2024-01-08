@@ -8,12 +8,12 @@ import { Question } from "./question.entity";
 @ObjectType()
 export class AttemptQuestion extends AbstractEntity<AttemptQuestion> {
 
-    @Column()
-    @Field(() => Float)
+    @Column({ nullable: true })
+    @Field(() => Float, { nullable: true })
     points_scored: number;
 
-    @Column()
-    @Field()
+    @Column({ nullable: true })
+    @Field({ nullable: true })
     answer: string;
 
     @ManyToOne(() => Attempt, attempt => attempt.attempts_questions)
