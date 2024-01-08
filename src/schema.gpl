@@ -49,8 +49,8 @@ type Question {
 }
 
 enum QuestionTypeEnum {
-  OPEN_ENDED
-  CLOSED_ENDED
+  CHOICE
+  TEXT
   SORTING
 }
 
@@ -94,7 +94,7 @@ type Query {
 type Mutation {
   createUser(createUserDto: CreateUserDto!): User!
   removeUser(id: Int!): User
-  createQuiz: Quiz!
+  createQuiz(createQuizDto: CreateQuizDto!): Quiz!
 }
 
 input CreateUserDto {
@@ -103,4 +103,33 @@ input CreateUserDto {
   password: String!
   full_name: String!
   user_role: UserRoleEnum!
+}
+
+input CreateQuizDto {
+  user_id: Int!
+  name: String!
+  questionsDto: [CreateQuestionDto!]!
+}
+
+input CreateQuestionDto {
+  content: String!
+  question_type: QuestionTypeEnum!
+  max_points: Float!
+  choiceAnswersDto: [CreateChoiceAnswerDto]
+  sortingAnswersDto: [CreateSortingAnswerDto]
+  textAnswersDto: [CreateTextAnswerDto]
+}
+
+input CreateChoiceAnswerDto {
+  content: String!
+  is_correct: Boolean!
+}
+
+input CreateSortingAnswerDto {
+  content: String!
+  order: Int!
+}
+
+input CreateTextAnswerDto {
+  content: String!
 }
