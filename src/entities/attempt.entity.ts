@@ -20,13 +20,6 @@ export class Attempt extends AbstractEntity<Attempt> {
     @Field(() => Date, { nullable: true })
     finished_at: Date;
 
-    @Column({ 
-        nullable: true, 
-        type: 'double precision' 
-    })
-    @Field({ nullable: true })
-    score: number;
-
     @ManyToOne(() => User, user => user.attempts, { nullable: false })
     @JoinColumn({ name: 'user_id'})
     @Field(() => User)
