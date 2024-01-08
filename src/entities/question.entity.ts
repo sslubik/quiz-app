@@ -5,6 +5,7 @@ import { Quiz } from "./quiz.entity";
 import { ChoiceAnswer } from "./choice.answer.entity";
 import { SortingAnswer } from "./sorting.answer.entity";
 import { TextAnswer } from "./text.answer.entity";
+import { AttemptQuestion } from "./attempt.question.entity";
 
 export enum QuestionTypeEnum {
     CHOICE = 'choice',
@@ -46,4 +47,8 @@ export class Question extends AbstractContentEntity {
     @OneToMany(() => TextAnswer, textAnswer => textAnswer.question, { nullable: true })
     @Field(() => [TextAnswer], { nullable: true })
     text_answers: TextAnswer[];
+
+    @OneToMany(() => AttemptQuestion, attemptQuestion => attemptQuestion.question, { nullable: true })
+    @Field(() => [AttemptQuestion])
+    attempts_questions: AttemptQuestion[];
 }
