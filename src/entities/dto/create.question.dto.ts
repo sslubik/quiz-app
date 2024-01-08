@@ -8,20 +8,20 @@ import { CreateTextAnswerDto } from "./create.text.answer.dto";
 export class CreateQuestionDto {
 
     @Field()
-    content: string;
+    readonly content: string;
 
     @Field(() => QuestionTypeEnum)
-    question_type: QuestionTypeEnum;
+    readonly question_type: QuestionTypeEnum;
 
     @Field(() => Float)
-    max_point: number;
+    readonly max_points: number;
 
     @Field(() => [CreateChoiceAnswerDto], { nullable: 'itemsAndList' })
-    choiceAnswersDto: CreateChoiceAnswerDto[];
+    readonly choiceAnswersDto: CreateChoiceAnswerDto[];
 
     @Field(() => [CreateSortingAnswerDto], { nullable: 'itemsAndList' })
-    sortingAnswersDto: CreateSortingAnswerDto[];
+    readonly sortingAnswersDto: CreateSortingAnswerDto[];
 
     @Field(() => [CreateTextAnswerDto], { nullable: 'itemsAndList' })
-    textAnswersDto: CreateTextAnswerDto[];
+    readonly textAnswersDto: CreateTextAnswerDto[];
 }
