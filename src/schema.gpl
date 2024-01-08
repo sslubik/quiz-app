@@ -2,21 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Attempt {
-  id: ID!
-  opens_at: DateTime
-  time_limit: String
-  finished_at: DateTime
-  score: Float
-  user: User!
-  quiz: Quiz!
-}
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
-
 type ChoiceAnswer {
   id: ID!
   content: String!
@@ -42,10 +27,12 @@ type Question {
   content: String!
   max_points: Float!
   question_type: QuestionTypeEnum!
+  quiz_id: Int!
   quiz: Quiz!
   choice_answers: [ChoiceAnswer!]
   sorting_answers: [SortingAnswer!]
   text_answers: [TextAnswer!]
+  attempts_questions: [AttemptQuestion!]!
 }
 
 enum QuestionTypeEnum {
@@ -53,6 +40,31 @@ enum QuestionTypeEnum {
   TEXT
   SORTING
 }
+
+type AttemptQuestion {
+  id: ID!
+  points_scored: Float
+  answer: String
+  attempt: Attempt!
+  question: Question!
+}
+
+type Attempt {
+  id: ID!
+  opens_at: DateTime
+  time_limit: String
+  finished_at: DateTime
+  user_id: Int!
+  user: User!
+  quiz_id: Int!
+  quiz: Quiz!
+  attempts_questions: AttemptQuestion!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
 type Quiz {
   id: ID!
@@ -83,6 +95,7 @@ enum UserRoleEnum {
 type Query {
   findAllUsers: [User!]!
   findOneUser(id: Int!): User!
+  findAllAttempts: [Attempt!]!
   findAllChoiceAnswers: [ChoiceAnswer!]!
   findOneChoiceAnswer: ChoiceAnswer!
   findAllSortingAnswers: [SortingAnswer!]!
@@ -95,6 +108,7 @@ type Mutation {
   createUser(createUserDto: CreateUserDto!): User!
   removeUser(id: Int!): User
   createQuiz(createQuizDto: CreateQuizDto!): Quiz!
+  createAttempt(crateAttemptDto: CreateAttemptDto!): Attempt!
 }
 
 input CreateUserDto {
@@ -132,4 +146,11 @@ input CreateSortingAnswerDto {
 
 input CreateTextAnswerDto {
   content: String!
+}
+
+input CreateAttemptDto {
+  user_id: Int!
+  quiz_id: Int!
+  opens_at: DateTime
+  time_limit: String
 }
