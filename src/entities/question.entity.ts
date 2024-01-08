@@ -7,9 +7,9 @@ import { SortingAnswer } from "./sorting.answer.entity";
 import { TextAnswer } from "./text.answer.entity";
 
 export enum QuestionTypeEnum {
-    OPEN_ENDED = "open_ended",
-    CLOSED_ENDED = 'closed_ended',
-    SORTING = 'sorting'
+    CHOICE = 'CHOICE',
+    TEXT = 'TEXT',
+    SORTING = 'SORTING'
 }
 
 registerEnumType(QuestionTypeEnum, { name: 'QuestionTypeEnum' });
