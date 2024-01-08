@@ -1,8 +1,9 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm";
 import { AbstractEntity } from "./abstract.entity";
-import { Field, ObjectType } from "@nestjs/graphql";
+import { Field, Int, ObjectType } from "@nestjs/graphql";
 import { User } from "./user.entity";
 import { Quiz } from "./quiz.entity";
+import { AttemptQuestion } from "./attempt.question.entity";
 
 @Entity('Attempts')
 @ObjectType()
@@ -20,13 +21,25 @@ export class Attempt extends AbstractEntity<Attempt> {
     @Field(() => Date, { nullable: true })
     finished_at: Date;
 
-    @ManyToOne(() => User, user => user.attempts, { nullable: false })
-    @JoinColumn({ name: 'user_id'})
+    @Column()
+    @Field(() => Int)
+    user_id: number;
+
+    @ManyToOne(() => User, user => user.attempts)
+    @JoinColumn({ name: 'user_id' })
     @Field(() => User)
     user: User;
 
-    @ManyToOne(() => Quiz, quiz => quiz.attempts, { nullable: false })
+    @Column()
+    @Field(() => Int)
+    quiz_id: number;
+
+    @ManyToOne(() => Quiz, quiz => quiz.attempts)
     @JoinColumn({ name: 'quiz_id'})
     @Field(() => Quiz)
     quiz: Quiz;
+
+    @OneToMany(() => AttemptQuestion, attemptQuestion => attemptQuestion.attempt)
+    @Field(() => AttemptQuestion)
+    attempts_questions: AttemptQuestion[];
 }
