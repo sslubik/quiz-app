@@ -10,4 +10,12 @@ export class QuestionsService {
         @InjectRepository(Question)
         private readonly questionsRepository: Repository<Question>
     ) {}
+
+    async findByQuestionId(id: number): Promise<Question> {
+        try {
+            return this.questionsRepository.findOneBy({ id });
+        } catch(err) {
+            console.error(err);
+        }
+    }
 }
