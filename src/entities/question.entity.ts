@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm";
 import { AbstractContentEntity } from "./abstract.content.entity";
-import { Field, ObjectType, registerEnumType } from "@nestjs/graphql";
+import { Field, Int, ObjectType, registerEnumType } from "@nestjs/graphql";
 import { Quiz } from "./quiz.entity";
 import { ChoiceAnswer } from "./choice.answer.entity";
 import { SortingAnswer } from "./sorting.answer.entity";
@@ -30,6 +30,10 @@ export class Question extends AbstractContentEntity {
     })
     @Field(() => QuestionTypeEnum)
     question_type: QuestionTypeEnum;
+
+    @Column()
+    @Field(() => Int)
+    quiz_id: number;
     
     @ManyToOne(() => Quiz, quiz => quiz.attempts, { nullable: false })
     @JoinColumn({ name: 'quiz_id'})
