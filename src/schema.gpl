@@ -45,7 +45,9 @@ type AttemptQuestion {
   id: ID!
   points_scored: Float
   answer: String
+  attempt_id: Int!
   attempt: Attempt!
+  question_id: Int!
   question: Question!
 }
 
@@ -59,6 +61,7 @@ type Attempt {
   quiz_id: Int!
   quiz: Quiz!
   attempts_questions: AttemptQuestion!
+  attemptQuestions: [AttemptQuestion!]!
 }
 
 """
