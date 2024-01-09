@@ -1,11 +1,10 @@
-import { ResolveField, Resolver } from '@nestjs/graphql';
+import { Parent, ResolveField, Resolver } from '@nestjs/graphql';
 import { AttemptsQuestionsService } from './attempts-questions.service';
 import { Question } from 'src/entities/question.entity';
-import { Param } from '@nestjs/common';
 import { AttemptQuestion } from 'src/entities/attempt.question.entity';
 import { QuestionsService } from 'src/questions/questions.service';
 
-@Resolver()
+@Resolver(of => AttemptQuestion)
 export class AttemptsQuestionsResolver {
 
     constructor(
@@ -13,8 +12,8 @@ export class AttemptsQuestionsResolver {
         private readonly questionsService: QuestionsService
     ) {}
 
-    @ResolveField('Questions', returns => Question)
-    async findQuestionsById(@Param() attemptQuestion: AttemptQuestion) {
+    @ResolveField('question', returns => Question)
+    async findQuestionsById(@Parent() attemptQuestion: AttemptQuestion) {
         return await this.questionsService.findByQuestionId(attemptQuestion.question_id);
     }
 }
