@@ -4,7 +4,7 @@ import { Field, ObjectType } from "@nestjs/graphql";
 
 @Entity()
 @ObjectType()
-export class AbstractContentEntity extends AbstractEntity<AbstractContentEntity> {
+export class AbstractTextContentEntity extends AbstractEntity<AbstractTextContentEntity> {
 
     @Column({ type: 'text' })
     @Field()
