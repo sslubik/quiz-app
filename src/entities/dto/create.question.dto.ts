@@ -3,12 +3,10 @@ import { QuestionTypeEnum } from "../question.entity";
 import { CreateChoiceAnswerDto } from "./create.choice.answer.dto";
 import { CreateSortingAnswerDto } from "./create.sorting.answer.dto";
 import { CreateTextAnswerDto } from "./create.text.answer.dto";
+import { AbstractTextContentDto } from "./abstract.text.content.dto";
 
 @InputType()
-export class CreateQuestionDto {
-
-    @Field()
-    readonly content: string;
+export class CreateQuestionDto extends AbstractTextContentDto {
 
     @Field(() => QuestionTypeEnum)
     readonly question_type: QuestionTypeEnum;

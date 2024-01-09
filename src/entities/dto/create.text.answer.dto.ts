@@ -1,8 +1,5 @@
-import { Field, InputType } from "@nestjs/graphql";
+import { InputType } from "@nestjs/graphql";
+import { AbstractTextContentDto } from "./abstract.text.content.dto";
 
 @InputType()
-export class CreateTextAnswerDto {
-
-    @Field()
-    content: string;
-}
+export class CreateTextAnswerDto extends AbstractTextContentDto {}
