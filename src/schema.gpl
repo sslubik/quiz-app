@@ -33,6 +33,7 @@ type Question {
   sorting_answers: [SortingAnswer!]
   text_answers: [TextAnswer!]
   attempts_questions: [AttemptQuestion!]!
+  answers: [AnswersUnion!]!
 }
 
 enum QuestionTypeEnum {
@@ -40,6 +41,8 @@ enum QuestionTypeEnum {
   TEXT
   SORTING
 }
+
+union AnswersUnion = ChoiceAnswer | SortingAnswer | TextAnswer
 
 type AttemptQuestion {
   id: ID!
