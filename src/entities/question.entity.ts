@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm";
-import { AbstractContentEntity } from "./abstract.content.entity";
+import { AbstractTextContentEntity } from "./abstract.text.content.entity";
 import { Field, Int, ObjectType, registerEnumType } from "@nestjs/graphql";
 import { Quiz } from "./quiz.entity";
 import { ChoiceAnswer } from "./choice.answer.entity";
@@ -17,7 +17,7 @@ registerEnumType(QuestionTypeEnum, { name: 'QuestionTypeEnum'});
 
 @Entity('Questions')
 @ObjectType()
-export class Question extends AbstractContentEntity {
+export class Question extends AbstractTextContentEntity {
 
     @Column({ type: 'double precision' })
     @Field()

@@ -1,11 +1,11 @@
 import { Field, ObjectType } from "@nestjs/graphql";
 import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
-import { AbstractContentEntity } from "./abstract.content.entity";
+import { AbstractTextContentEntity } from "./abstract.text.content.entity";
 import { Question } from "./question.entity";
 
 @Entity('Choice_answers')
 @ObjectType()
-export class ChoiceAnswer extends AbstractContentEntity {
+export class ChoiceAnswer extends AbstractTextContentEntity {
 
     @Column()
     @Field()
