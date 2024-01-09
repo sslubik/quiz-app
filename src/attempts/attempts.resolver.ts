@@ -25,6 +25,6 @@ export class AttemptsResolver {
 
     @ResolveField('attemptQuestions', returns => [AttemptQuestion])
     async findAttemptQuestions(@Parent() attempt: Attempt) {
-        return await this.attemptsQuestionsService.findByAttemptId({ attempt_id: attempt.id})
+        return await this.attemptsQuestionsService.findByAttemptId(attempt.id);
     }
 }
