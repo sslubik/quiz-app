@@ -40,6 +40,6 @@ export class Attempt extends AbstractEntity<Attempt> {
     quiz: Quiz;
 
     @OneToMany(() => AttemptQuestion, attemptQuestion => attemptQuestion.attempt)
-    @Field(() => AttemptQuestion)
+    @Field(() => [AttemptQuestion])
     attempts_questions: AttemptQuestion[];
 }
