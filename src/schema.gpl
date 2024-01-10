@@ -102,6 +102,7 @@ type Query {
   findAllUsers: [User!]!
   findOneUser(id: Int!): User!
   findAllAttempts: [Attempt!]!
+  findAttemptById(ID: Float!): Attempt!
   findAllChoiceAnswers: [ChoiceAnswer!]!
   findOneChoiceAnswer: ChoiceAnswer!
   findAllSortingAnswers: [SortingAnswer!]!
@@ -115,6 +116,7 @@ type Mutation {
   removeUser(id: Int!): User
   createQuiz(createQuizDto: CreateQuizDto!): Quiz!
   createAttempt(crateAttemptDto: CreateAttemptDto!): Attempt!
+  updateAttempt(updateAttemptDto: UpdateAttemptDto!): Attempt!
 }
 
 input CreateUserDto {
@@ -159,4 +161,15 @@ input CreateAttemptDto {
   quiz_id: Int!
   opens_at: DateTime
   time_limit: String
+}
+
+input UpdateAttemptDto {
+  attempt_id: Int!
+  userAnswers: [UpdateAttemptQuestionsDto!]!
+}
+
+input UpdateAttemptQuestionsDto {
+  question_id: Int!
+  num_array_answer: [Int!]
+  text_answer: String
 }
