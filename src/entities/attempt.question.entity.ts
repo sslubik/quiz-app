@@ -8,7 +8,10 @@ import { Question } from "./question.entity";
 @ObjectType()
 export class AttemptQuestion extends AbstractEntity<AttemptQuestion> {
 
-    @Column({ nullable: true })
+    @Column({ 
+        nullable: true,
+        type: 'double precision'
+    })
     @Field(() => Float, { nullable: true })
     points_scored: number;
 
