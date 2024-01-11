@@ -63,8 +63,10 @@ type Attempt {
   user: User!
   quiz_id: Int!
   quiz: Quiz!
-  attempts_questions: AttemptQuestion!
-  attemptQuestions: [AttemptQuestion!]!
+  attempts_questions: [AttemptQuestion!]!
+  attempt_questions: [AttemptQuestion!]!
+  max_points: Float!
+  score: Float!
 }
 
 """
