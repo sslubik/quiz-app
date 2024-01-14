@@ -50,8 +50,11 @@ export class QuizzesService {
       try {
         const { questionsDto, ...newQuiz } = createQuizDto;
 
+        if (!questionsDto || !questionsDto.length) {
+          throw new Error('Quiz must have at least one question!');
+        }
+
         const quiz = new Quiz(newQuiz);
-  
         const savedQuiz = await queryRunner.manager.save(Quiz, quiz);
   
         for (const questionDto of questionsDto) {
@@ -60,16 +63,16 @@ export class QuizzesService {
                   textAnswersDto, 
                   ...newQuestion } = questionDto;
 
-          if ((typeof choiceAnswersDto === 'undefined' || !choiceAnswersDto.length)
-              && (typeof sortingAnswersDto === 'undefined' || !sortingAnswersDto.length)
-              && (typeof textAnswersDto === 'undefined' || !textAnswersDto.length)) {
-            throw new Error(`All questions must have at least one answer!
-            Faulty question content: ${newQuestion.content}`);
+          if ((!choiceAnswersDto || !choiceAnswersDto.length)
+              && (!sortingAnswersDto || !sortingAnswersDto.length)
+              && (!textAnswersDto || !textAnswersDto.length)) {
+            throw new Error('All questions must have at least one answer!\n'
+            + `Faulty question content: "${newQuestion.content}"`);
           }
 
           if (newQuestion.max_points < 0) {
-            throw new Error(`Max points for question cannot be lesser than 0!
-            Faulty question content: ${newQuestion.content}`);
+            throw new Error('Max points for question cannot be lesser than 0!\n'
+            + `Faulty question content: "${newQuestion.content}"`);
           }
 
           const question = new Question(newQuestion);
@@ -90,8 +93,8 @@ export class QuizzesService {
               }
 
               if (!isCorrectArr.some(isCorrect => isCorrect)) {
-                throw new Error(`Answers in choice type questions must have at least one true answer!
-                Faulty question content: ${savedQuestion.content}`);
+                throw new Error('Answers in choice type questions must have at least one true answer!\n'
+                + `Faulty question content: "${savedQuestion.content}"`);
               }
 
               break;
@@ -104,9 +107,9 @@ export class QuizzesService {
                 sortingAnswer.question = question;
 
                 if (sortingAnswer.order < 0) {
-                  throw new Error(`Order in sorting answers must be greater than 0!
-                  Faulty question content: ${question.content}
-                  Faulty answer content: ${sortingAnswer.content}`);
+                  throw new Error('Order in sorting answers must be greater than 0!\n'
+                  + `Faulty question content: "${question.content}"\n`
+                  + `Faulty answer content: "${sortingAnswer.content}"`);
                 }
 
                 orderArr.push(sortingAnswer.order);
@@ -115,8 +118,8 @@ export class QuizzesService {
               }
 
               if (!sortingAnswerCorrectOrder(orderArr)) {
-                throw new Error(`Incorrect sorting order! Make sure that all answer orders are from 0 to 1, 2, 3, ...
-                 Faulty Question content: ${question.content}`);
+                throw new Error('Incorrect sorting order! Make sure that all answer orders are from 0 to 1, 2, 3, ...\n'
+                 + `Faulty Question content: "${question.content}"`);
               }
 
               break;
