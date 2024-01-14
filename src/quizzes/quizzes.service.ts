@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { sortingAnswerCorrectOrder } from 'src/auxillery-functions/sortingAnswerCorrectOrder';
-import { ChoiceAnswer } from 'src/entities/choice.answer.entity';
+import { sortingAnswerCorrectOrder } from '../auxillery-functions/sortingAnswerCorrectOrder';
+import { ChoiceAnswer } from '../entities/choice.answer.entity';
 import { CreateQuizDto } from 'src/entities/dto/create.quiz.dto';
-import { Question, QuestionTypeEnum } from 'src/entities/question.entity';
-import { Quiz } from 'src/entities/quiz.entity';
-import { SortingAnswer } from 'src/entities/sorting.answer.entity';
-import { TextAnswer } from 'src/entities/text.answer.entity';
+import { Question, QuestionTypeEnum } from '../entities/question.entity';
+import { Quiz } from '../entities/quiz.entity';
+import { SortingAnswer } from '../entities/sorting.answer.entity';
+import { TextAnswer } from '../entities/text.answer.entity';
 import { DataSource, Repository } from 'typeorm';
 
 @Injectable()
