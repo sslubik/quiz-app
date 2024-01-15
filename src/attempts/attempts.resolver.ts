@@ -34,7 +34,7 @@ export class AttemptsResolver {
         return await this.attemptsQuestionsService.getMaxPoints(attempt);
     }
 
-    @ResolveField('score', returns => Float)
+    @ResolveField('score', returns => Float, { nullable: true })
     async getScore(@Parent() attempt: Attempt) {
         return await this.attemptsQuestionsService.getScore(attempt);
     }
