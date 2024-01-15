@@ -8,6 +8,7 @@ import { Quiz } from '../entities/quiz.entity';
 import { SortingAnswer } from '../entities/sorting.answer.entity';
 import { TextAnswer } from '../entities/text.answer.entity';
 import { DataSource, Repository } from 'typeorm';
+import { User, UserRoleEnum } from '../entities/user.entity';
 
 @Injectable()
 export class QuizzesService {
@@ -49,6 +50,11 @@ export class QuizzesService {
   
       try {
         const { questionsDto, ...newQuiz } = createQuizDto;
+        const user = await queryRunner.manager.findOneBy(User, { id: newQuiz.user_id });
+        
+        if (user.user_role !== UserRoleEnum.TEACHER) {
+          throw new Error('Only teachers can create new quizzes!');
+        }
 
         if (!questionsDto || !questionsDto.length) {
           throw new Error('Quiz must have at least one question!');
