@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { normilizeString } from 'src/auxillery-functions/normilizeString';
-import { Attempt } from 'src/entities/attempt.entity';
-import { AttemptQuestion } from 'src/entities/attempt.question.entity';
-import { ChoiceAnswer } from 'src/entities/choice.answer.entity';
-import { CreateAttemptDto } from 'src/entities/dto/create.attempt.dto';
-import { UpdateAttemptDto } from 'src/entities/dto/update.attempt.dto';
-import { Question, QuestionTypeEnum } from 'src/entities/question.entity';
-import { SortingAnswer } from 'src/entities/sorting.answer.entity';
-import { TextAnswer } from 'src/entities/text.answer.entity';
+import { normilizeString } from '../auxillery-functions/normilizeString';
+import { Attempt } from '../entities/attempt.entity';
+import { AttemptQuestion } from '../entities/attempt.question.entity';
+import { ChoiceAnswer } from '../entities/choice.answer.entity';
+import { CreateAttemptDto } from '../entities/dto/create.attempt.dto';
+import { UpdateAttemptDto } from '../entities/dto/update.attempt.dto';
+import { Question, QuestionTypeEnum } from '../entities/question.entity';
+import { SortingAnswer } from '../entities/sorting.answer.entity';
+import { TextAnswer } from '../entities/text.answer.entity';
 import { DataSource, Repository } from 'typeorm';
 
 @Injectable()
@@ -36,10 +36,15 @@ export class AttemptsService {
         }
     }
 
-    async create(createAttemptDto: CreateAttemptDto) {
+    async create(createAttemptDto: CreateAttemptDto): Promise<Attempt> {
         const queryRunner = this.dataSource.createQueryRunner();
         await queryRunner.connect();
         await queryRunner.startTransaction();
+
+        if (createAttemptDto.quiz_id < 1 || createAttemptDto.user_id < 1
+            || createAttemptDto.quiz_id % 1 !== 0 || createAttemptDto.user_id % 1 !== 0) {
+            throw new Error('Wrong data format: quiz_id and user_id must be integers greater than 0!');
+        }
         
         try {
             const attempt = new Attempt(createAttemptDto);
@@ -166,7 +171,7 @@ export class AttemptsService {
                             break;
 
                         default:
-                            throw new Error('Failed to save answer: unknow question type!');
+                            throw new Error('Failed to save answer: unknown question type!');
                     }
                 }
                 const attemptQuestion = await queryRunner.manager.findOneBy(
